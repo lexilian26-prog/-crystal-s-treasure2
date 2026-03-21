@@ -13,7 +13,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -42,14 +41,14 @@ export function CreateTripDialog() {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size="sm" className="gap-2">
-          <Plus className="h-4 w-4" />
-          新建
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+    <>
+      <Button size="sm" className="gap-2" onClick={() => setOpen(true)}>
+        <Plus className="h-4 w-4" />
+        新建
+      </Button>
+      
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={onSubmit}>
           <DialogHeader>
             <DialogTitle>新建行程</DialogTitle>
@@ -105,5 +104,6 @@ export function CreateTripDialog() {
         </form>
       </DialogContent>
     </Dialog>
+    </>
   )
 }

@@ -56,11 +56,9 @@ export function ItineraryItem({ node }: ItineraryItemProps) {
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8 rounded-full text-muted-foreground hover:text-primary"
-                asChild
+                onClick={() => window.open(node.external_link, '_blank', 'noopener,noreferrer')}
               >
-                <a href={node.external_link} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+                <ExternalLink className="h-4 w-4" />
               </Button>
             )}
             

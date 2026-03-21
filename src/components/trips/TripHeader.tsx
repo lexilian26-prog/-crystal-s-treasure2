@@ -69,7 +69,7 @@ export function TripHeader({ trip, members, progress = 0 }: TripHeaderProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center -space-x-2 overflow-hidden">
           {members.map((member, i) => {
-            const profile = Array.isArray(member.profiles) ? member.profiles[0] : member.profiles;
+            const profile = member.profiles as any;
             return (
               <Avatar 
                 key={member.user_id} 

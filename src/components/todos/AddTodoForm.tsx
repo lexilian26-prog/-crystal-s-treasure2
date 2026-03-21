@@ -78,7 +78,7 @@ export function AddTodoForm({ tripId, members }: AddTodoFormProps) {
                   <SelectContent>
                     <SelectItem value="none">不指派</SelectItem>
                     {members.map(m => {
-                      const profile = Array.isArray(m.profiles) ? m.profiles[0] : m.profiles;
+                      const profile = m.profiles as any;
                       return (
                         <SelectItem key={m.user_id} value={m.user_id}>
                           {profile?.name || '未命名'}

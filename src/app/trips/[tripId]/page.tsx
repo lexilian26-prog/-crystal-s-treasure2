@@ -102,11 +102,29 @@ export default async function TripPage({ params }: TripPageProps) {
     ? Math.round((completedPublic / publicTodos.length) * 100) 
     : 0
 
+  const formattedMembers = members?.map((member: any) => { 
+    // 1. 准备一个默认的 profile 对象，防止数据为空时页面崩溃 
+    let safeProfile = { name: '未知用户', avatar_url: '' }; 
+  
+    // 2. 判断并提取：如果是数组且有内容，取第一项；如果本来就是对象，直接使用 
+    if (Array.isArray(member.profiles) && member.profiles.length > 0) { 
+      safeProfile = member.profiles[0]; 
+    } else if (member.profiles && !Array.isArray(member.profiles)) { 
+      safeProfile = member.profiles; 
+    } 
+  
+    // 3. 返回清洗后的、符合前端组件要求的数据结构 
+    return { 
+      ...member, 
+      profiles: safeProfile 
+    }; 
+  });
+
   return (
     <div className="space-y-6 pb-24">
       <TripHeader 
         trip={trip} 
-        members={members || []} 
+        members={formattedMembers || []} 
         progress={progress} 
       />
       
@@ -127,7 +145,7 @@ export default async function TripPage({ params }: TripPageProps) {
             <TodoModule 
               tripId={tripId} 
               todos={todos || []} 
-              members={members || []} 
+              members={formattedMembers || []} 
               currentUserId={user.id}
             />
           </TabsContent>

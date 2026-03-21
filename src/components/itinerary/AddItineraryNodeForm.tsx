@@ -11,7 +11,6 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet"
 import { createItineraryNode } from '@/app/trips/actions/itinerary-actions'
 import { toast } from 'sonner'
@@ -44,14 +43,19 @@ export function AddItineraryNodeForm({ tripId }: AddItineraryNodeFormProps) {
   }
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button size="sm" variant="outline" className="h-8 gap-1.5 border-dashed border-primary/40 text-primary hover:bg-primary/5">
-          <Plus className="h-3.5 w-3.5" />
-          添加节点
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl sm:h-auto sm:max-w-xl sm:mx-auto">
+    <>
+      <Button 
+        onClick={() => setIsOpen(true)}
+        size="sm" 
+        variant="outline" 
+        className="h-8 gap-1.5 border-dashed border-primary/40 text-primary hover:bg-primary/5"
+      >
+        <Plus className="h-3.5 w-3.5" />
+        添加节点
+      </Button>
+
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl sm:h-auto sm:max-w-xl sm:mx-auto">
         <SheetHeader className="text-left">
           <SheetTitle>添加行程节点</SheetTitle>
           <SheetDescription>
@@ -139,7 +143,7 @@ export function AddItineraryNodeForm({ tripId }: AddItineraryNodeFormProps) {
             </Button>
           </div>
         </form>
-      </SheetContent>
-    </Sheet>
+      </Sheet>
+    </>
   )
 }

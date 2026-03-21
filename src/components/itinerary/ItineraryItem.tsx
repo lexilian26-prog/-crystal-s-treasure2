@@ -63,10 +63,10 @@ export function ItineraryItem({ node }: ItineraryItemProps) {
             )}
             
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-muted-foreground">
+              <DropdownMenuTrigger>
+                <div className="inline-flex items-center justify-center h-8 w-8 rounded-full text-muted-foreground hover:bg-muted hover:text-primary cursor-pointer transition-colors">
                   <MoreVertical className="h-4 w-4" />
-                </Button>
+                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-32">
                 <DropdownMenuItem className="text-destructive gap-2" onClick={handleDelete}>

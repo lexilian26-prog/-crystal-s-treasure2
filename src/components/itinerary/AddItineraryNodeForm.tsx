@@ -143,7 +143,8 @@ export function AddItineraryNodeForm({ tripId }: AddItineraryNodeFormProps) {
             </Button>
           </div>
         </form>
-      </Sheet>
-    </>
-  )
+      </SheetContent>
+    </Sheet>
+  </>
+)
 }

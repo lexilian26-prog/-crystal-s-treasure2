@@ -106,7 +106,10 @@ export default async function TripPage({ params }: TripPageProps) {
     <div className="space-y-6 pb-24">
       <TripHeader 
         trip={trip} 
-        members={members || []} 
+        members={(members || []).map(m => ({
+          ...m,
+          profiles: Array.isArray(m.profiles) ? m.profiles[0] : m.profiles
+        })) as any} 
         progress={progress} 
       />
       

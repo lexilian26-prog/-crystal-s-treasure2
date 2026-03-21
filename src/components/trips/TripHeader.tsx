@@ -68,20 +68,23 @@ export function TripHeader({ trip, members, progress = 0 }: TripHeaderProps) {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center -space-x-2 overflow-hidden">
-          {members.map((member, i) => (
-            <Avatar 
-              key={member.user_id} 
-              className={cn(
-                "h-7 w-7 border-2 border-background ring-1 ring-primary/5",
-                i > 0 && "hover:translate-x-1 transition-transform"
-              )}
-            >
-              <AvatarImage src={member.profiles?.avatar_url} />
-              <AvatarFallback className="bg-muted text-[10px]">
-                {member.profiles?.name?.[0] || '?'}
-              </AvatarFallback>
-            </Avatar>
-          ))}
+          {members.map((member, i) => {
+            const profile = Array.isArray(member.profiles) ? member.profiles[0] : member.profiles;
+            return (
+              <Avatar 
+                key={member.user_id} 
+                className={cn(
+                  "h-7 w-7 border-2 border-background ring-1 ring-primary/5",
+                  i > 0 && "hover:translate-x-1 transition-transform"
+                )}
+              >
+                <AvatarImage src={profile?.avatar_url || undefined} />
+                <AvatarFallback className="bg-muted text-[10px]">
+                  {profile?.name?.[0] || '?'}
+                </AvatarFallback>
+              </Avatar>
+            );
+          })}
           {members.length > 5 && (
             <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-background bg-muted text-[10px] font-medium ring-1 ring-primary/5">
               +{members.length - 5}

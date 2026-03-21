@@ -18,7 +18,7 @@ export interface Trip {
 export interface TripMember {
   user_id: string;
   role: 'admin' | 'editor' | 'viewer';
-  profiles: Profile | null;
+  profiles: Profile | Profile[] | null;
 }
 
 export interface Todo {

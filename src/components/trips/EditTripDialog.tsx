@@ -13,7 +13,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -70,13 +69,21 @@ export function EditTripDialog({ trip }: EditTripDialogProps) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild onClick={(e) => e.stopPropagation()}>
-        <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-primary">
-          <Settings className="h-4 w-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]" onClick={(e) => e.stopPropagation()}>
+    <>
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        className="h-8 w-8 text-muted-foreground hover:text-primary"
+        onClick={(e) => {
+          e.stopPropagation()
+          setOpen(true)
+        }}
+      >
+        <Settings className="h-4 w-4" />
+      </Button>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-[425px]" onClick={(e) => e.stopPropagation()}>
         <form onSubmit={onSubmit}>
           <DialogHeader>
             <DialogTitle>编辑行程</DialogTitle>
@@ -149,5 +156,6 @@ export function EditTripDialog({ trip }: EditTripDialogProps) {
         </form>
       </DialogContent>
     </Dialog>
+    </>
   )
 }

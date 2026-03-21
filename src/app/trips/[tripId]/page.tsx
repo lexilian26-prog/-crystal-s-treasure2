@@ -102,14 +102,16 @@ export default async function TripPage({ params }: TripPageProps) {
     ? Math.round((completedPublic / publicTodos.length) * 100) 
     : 0
 
+  const formattedMembers = (members || []).map(m => ({
+    ...m,
+    profiles: Array.isArray(m.profiles) ? m.profiles[0] : m.profiles
+  })) as any
+
   return (
     <div className="space-y-6 pb-24">
       <TripHeader 
         trip={trip} 
-        members={(members || []).map(m => ({
-          ...m,
-          profiles: Array.isArray(m.profiles) ? m.profiles[0] : m.profiles
-        })) as any} 
+        members={formattedMembers} 
         progress={progress} 
       />
       
@@ -130,7 +132,7 @@ export default async function TripPage({ params }: TripPageProps) {
             <TodoModule 
               tripId={tripId} 
               todos={todos || []} 
-              members={members || []} 
+              members={formattedMembers} 
               currentUserId={user.id}
             />
           </TabsContent>

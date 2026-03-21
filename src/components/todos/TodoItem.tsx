@@ -87,7 +87,7 @@ export function TodoItem({ todo, tripId }: TodoItemProps) {
         {todo.assigned_to && (
           <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-muted/50">
             <Avatar className="h-5 w-5">
-              <AvatarImage src={todo.assignee_profile?.avatar_url} />
+              <AvatarImage src={todo.assignee_profile?.avatar_url ?? undefined} />
               <AvatarFallback className="text-[8px]">
                 <User className="h-3 w-3" />
               </AvatarFallback>

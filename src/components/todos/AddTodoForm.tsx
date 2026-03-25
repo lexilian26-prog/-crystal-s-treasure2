@@ -20,9 +20,10 @@ import { Label } from '@/components/ui/label'
 interface AddTodoFormProps {
   tripId: string
   members: TripMember[]
+  mode?: 'public' | 'personal'
 }
 
-export function AddTodoForm({ tripId, members }: AddTodoFormProps) {
+export function AddTodoForm({ tripId, members, mode = 'public' }: AddTodoFormProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -33,6 +34,9 @@ export function AddTodoForm({ tripId, members }: AddTodoFormProps) {
 
     const formData = new FormData(e.currentTarget)
     formData.append('trip_id', tripId)
+    if (mode === 'personal') {
+      formData.set('is_private', 'true')
+    }
     
     const result = await createTodo(formData)
     
@@ -104,7 +108,12 @@ export function AddTodoForm({ tripId, members }: AddTodoFormProps) {
 
             <div className="flex items-center justify-between pt-2">
               <div className="flex items-center space-x-2">
-                <Checkbox id="is_public" name="is_private" value="true" />
+                {mode === 'personal' && (
+                  <input type="hidden" name="is_private" value="true" />
+                )}
+                {mode === 'public' && (
+                  <Checkbox id="is_public" name="is_private" value="true" />
+                )}
                 <label
                   htmlFor="is_public"
                   className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-1 cursor-pointer"

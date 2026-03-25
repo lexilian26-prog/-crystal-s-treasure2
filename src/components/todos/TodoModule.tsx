@@ -32,7 +32,7 @@ export function TodoModule({ tripId, todos, members, currentUserId }: TodoModule
         </TabsList>
         
         <TabsContent value="public" className="space-y-4 outline-none">
-          <AddTodoForm tripId={tripId} members={members} />
+          <AddTodoForm tripId={tripId} members={members} mode="public" />
           <div className="space-y-2">
             {publicTodos.length === 0 ? (
               <div className="py-8 text-center text-xs text-muted-foreground">
@@ -47,7 +47,7 @@ export function TodoModule({ tripId, todos, members, currentUserId }: TodoModule
         </TabsContent>
 
         <TabsContent value="personal" className="space-y-4 outline-none">
-          <AddTodoForm tripId={tripId} members={members} />
+          <AddTodoForm tripId={tripId} members={members} mode="personal" />
           <div className="space-y-2">
             {personalTodos.length === 0 ? (
               <div className="py-8 text-center text-xs text-muted-foreground">

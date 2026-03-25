@@ -48,7 +48,7 @@ export function ItineraryModule({ tripId, nodes }: ItineraryModuleProps) {
               
               <div className="pt-2">
                 {groupedNodes[day]
-                  .sort((a, b) => (a.time_text || '').localeCompare(b.time_text || ''))
+                  .sort((a, b) => ((a.time_text || (a as any).time || '')).localeCompare(b.time_text || (b as any).time || ''))
                   .map(node => (
                     <ItineraryItem key={node.id} node={node} />
                   ))}

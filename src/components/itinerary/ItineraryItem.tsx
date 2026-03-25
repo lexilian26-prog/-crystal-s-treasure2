@@ -42,7 +42,7 @@ export function ItineraryItem({ node }: ItineraryItemProps) {
           <div className="space-y-1 flex-1">
             <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-wider">
               <Clock className="h-3 w-3" />
-              {node.time_text || '未定时间'}
+              {(node.time_text || (node as any).time || '未定时间')}
             </div>
             <h4 className="font-semibold text-sm leading-tight flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-muted-foreground" />

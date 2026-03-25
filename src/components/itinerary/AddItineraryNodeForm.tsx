@@ -137,7 +137,7 @@ export function AddItineraryNodeForm({ tripId }: AddItineraryNodeFormProps) {
             >
               取消
             </Button>
-            <Button className="flex-1 h-12 rounded-xl" disabled={isLoading}>
+            <Button type="submit" className="flex-1 h-12 rounded-xl" disabled={isLoading}>
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               保存
             </Button>

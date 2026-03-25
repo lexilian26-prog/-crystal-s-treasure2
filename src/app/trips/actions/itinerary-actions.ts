@@ -18,7 +18,8 @@ export async function createItineraryNode(formData: FormData) {
     .insert({
       trip_id,
       day_number,
-      time_text: time_text || null,
+      // 兼容早期数据库使用的 `time` 字段
+      time: time_text || null,
       location_name,
       note: note || null,
       external_link: external_link || null
